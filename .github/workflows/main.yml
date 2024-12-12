@@ -16,19 +16,20 @@ jobs:
       - name: Checkout the repository code
         uses: actions/checkout@v2
 
-      - name: Install .NET SDK
+      - name: Install Mono (to run NClass)
         run: |
-          sudo apt-get install -y dotnet-sdk-6.0
+          sudo apt-get update
+          sudo apt-get install -y mono-complete
 
-      - name: Install CSharpUml
+      - name: Download NClass (for UML generation)
         run: |
-          # Install CSharpUml from NuGet package
-          dotnet tool install --global csharpuml
+          wget https://github.com/nclass/nclass/releases/download/v3.0.0-beta4/nclass-3.0.0-beta4.zip
+          unzip nclass-3.0.0-beta4.zip -d nclass
+          chmod +x nclass/NClass.exe
 
-      - name: Generate .puml from C# code
+      - name: Generate .puml from C# code using NClass
         run: |
-          # Generate .puml file from C# source code
-          csharpuml ./src -o ./generated -puml  # Modify the path as needed
+          mono nclass/NClass.exe -generate-uml ./src -output ./generated -puml
 
       - name: Install PlantUML
         run: |
