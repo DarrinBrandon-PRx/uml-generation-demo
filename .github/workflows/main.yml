@@ -1,0 +1,47 @@
+name: Generate UML Class Diagram from C# Code
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  generate-uml:
+    runs-on: ubuntu-latest  # Using an Ubuntu runner
+
+    steps:
+      - name: Checkout the repository code
+        uses: actions/checkout@v2
+
+      - name: Install .NET SDK
+        run: |
+          sudo apt-get install -y dotnet-sdk-6.0
+
+      - name: Install CSharpUml
+        run: |
+          # Install CSharpUml from NuGet package
+          dotnet tool install --global csharpuml
+
+      - name: Generate .puml from C# code
+        run: |
+          # Generate .puml file from C# source code
+          csharpuml ./src -o ./generated -puml  # Modify the path as needed
+
+      - name: Install PlantUML
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y plantuml  # Install PlantUML
+
+      - name: Generate UML Diagram (PNG) from .puml
+        run: |
+          # Run PlantUML to generate PNG from the .puml file
+          plantuml ./generated/*.puml  # Modify path if necessary
+
+      - name: Upload UML diagram as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: uml-diagram
+          path: ./generated/*.png  # Path to the generated UML image
