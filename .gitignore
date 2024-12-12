@@ -1,0 +1,78 @@
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]eploy/
+bin/
+obj/
+
+# Uncomment if you have a project that generates files
+# that are necessary to run your app in production
+# but don't need to be checked into version control.
+# publish/
+
+# ASP.NET Scaffolding
+Scaffolding/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer files
+.vs2019/
+.vs2022/
+
+# Windows Installer files
+# .vscode
+.vscode/
+.idea/
+
+# Ignore Visual Studio for Mac configurations
+.idea/
+
+# User-specific files for Visual Studio Code
+.vscode/
+
+# Microsoft Azure Web Apps
+# .deploy/
+
+# JetBrains Rider specific files
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Node.js specific files
+node_modules/
+
+# NPM package files
+package-lock.json
+
+# VS for Mac
+.vscode/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# JetBrains Rider
+.idea/
+
+# macOS files
+.DS_Store
+
+# Windows Installer
+Thumbs.db
+
+# User-specific files
+*.swp
